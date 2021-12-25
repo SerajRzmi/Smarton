@@ -160,10 +160,15 @@ touch = st.checkbox('Do You need Touchscreen Laptop?',
     value = False)
 if touch:
     st.write('Touch On')
+else:
+    pass
+
+
 if 'Gaming' in works:
     df_new = df_new[df_new.Category=='Gaming']
-    df_show = df_new[(df_new.Manufacturer=='Dell') | (df_new.Manufacturer=='Asus') ]
-    st.dataframe(df_show[:10])
+    df_show = df_new[df_new.Manufacturer.isin(brand_name)]
+    st.write('Top nearest: ')
+    st.dataframe(df_show[(df_show.Price>price[0]) & (df_show.Price<price[1])][:7])
 
 
 
