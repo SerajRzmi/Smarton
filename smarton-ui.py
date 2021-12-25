@@ -2,13 +2,13 @@
 import numpy as np
 import pandas as pd
 import streamlit as st
-import pickle
-import re
-import matplotlib.pyplot as plt 
+#import pickle
+#import re
+#import matplotlib.pyplot as plt 
 
 
 # import data
-data = pd.read_csv(r'/Users/seraj/Desktop/laptops.csv',encoding='latin-1')
+data = pd.read_csv(r'laptops.csv',encoding='latin-1')
 
 # remove kg in weight and conver to float
 for i in range(len(data)): 
