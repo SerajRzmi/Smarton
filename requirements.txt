@@ -2,4 +2,6 @@ streamlit
 pandas 
 numpy 
 regex
-
+pillow
+glob2
+opencv-python
