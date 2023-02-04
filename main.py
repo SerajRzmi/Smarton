@@ -19,7 +19,7 @@ words_list = list(data.words_list)
 
 def google_crawler(word, website):
     driver = webdriver.Chrome(
-        executable_path=r"C:\Users\Administrator\chromedriver.exe")
+        executable_path=r"/Users/macbook/Desktop/chromedriver.exe")
     driver.get('https://www.google.com/')
 
     # maybe need to delete
