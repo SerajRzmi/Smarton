@@ -5,12 +5,6 @@ from selenium import webdriver
 import pandas as pd
 import time
 
-# pip install pandas
-# pip install selenium
-# pip install beautifulsoup4
-# pip install openpyxl
-
-
 # first above
 data = pd.read_excel('seo.xlsx')
 my_website = data.website[0]
@@ -23,10 +17,10 @@ def google_crawler(word, website):
     driver.get('https://www.google.com/')
 
     # maybe need to delete
-    button_agreement_address  = '#W0wltc'
-    button_agreement = driver.find_element(
-        by=By.CSS_SELECTOR, value=button_agreement_address)
-    button_agreement.click()
+    #button_agreement_address  = '#W0wltc'
+    #button_agreement = driver.find_element(
+    #    by=By.CSS_SELECTOR, value=button_agreement_address)
+    #button_agreement.click()
 
     # main start
     search_input_box_address = \
@@ -90,10 +84,25 @@ def google_crawler(word, website):
         next_page.click()
         time.sleep(2)
 
+    if len(website_rank)==0:
+        website_rank_number = 'not in first 10 pages'
+        number_of_pages_crawled = 'not in first 10 pages'
+        url = 'not in first 10 pages'
+    elif len(website_rank)>0:
+        website_rank_number = str(website_rank[0]+1)
+        number_of_pages_crawled = str(number_of_page_crawled[-1])
+        url = str(reply_list[website_rank[0]])
+
     driver.quit()
 
-    return word, str(website_rank[0]+1), str(number_of_page_crawled[-1]), str(reply_list[website_rank[0]])
+    return word, website_rank_number, number_of_pages_crawled, url
 
+df=pd.DataFrame({
+    'Word':[],
+    'Page_Rank':[],
+    'Website_Rank':[],
+    'Recomm_URL':[]
+})
 
 for word in words_list:
     word, website_rank, number_of_page_crawled, url = google_crawler(word,website=my_website)
